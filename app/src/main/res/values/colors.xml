@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="orange_200">#FD5A27</color>
+    <color name="orange_500">#FF5722</color>
+    <color name="orange_700">#CC3303</color>
+    <color name="secondary_orange_200">#E48B05</color>
+    <color name="secondary_orange_700">#C56606</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#111111</color>
+    <color name="nightSurface">#3E3E3E</color>
+    <color name="statusBar">#5C5A59</color>
+</resources>

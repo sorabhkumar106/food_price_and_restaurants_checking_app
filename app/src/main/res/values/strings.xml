@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FoodKart</string>
+    <string name="bottom_menu_user_heading">User</string>
+    <string name="bottom_menu_home_heading">Home</string>
+    <string name="bottom_menu_favorite_heading">Favorite</string>
+    <string name="option_menu_question_heading">FAQs</string>
+    <string name="option_menu_log_out">Log Out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

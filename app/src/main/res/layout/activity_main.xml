@@ -17,7 +17,9 @@
                 android:layout_height="?actionBarSize"
                 android:background="?colorPrimary"
                 app:titleTextColor="@color/white"
-                app:title="All Restaurant"/>
+                app:title="All Restaurant">
+
+            </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout

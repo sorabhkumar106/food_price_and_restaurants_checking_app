@@ -9,11 +9,14 @@ import com.sorabh.foodkart.util.DataX
 @Dao
 interface RestaurantsDAO {
     @Insert
-    suspend fun addRestaurants(dataX: DataX)
+    fun addRestaurant(data: DataX)
 
     @Delete
-    suspend fun deleteRestaurants(dataX: DataX)
+    fun deleteRestaurantData(data: DataX)
 
-    @Query("SELECT * FROM Restaurants_Data")
-    suspend fun getRestaurantsList():List<DataX>
+    @Query("Select * from restaurants_data")
+    fun getRestaurantsData(): List<DataX>?
+
+    @Query("select * from restaurants_data where id == :id")
+    fun getRestaurantData(id: String):DataX?
 }

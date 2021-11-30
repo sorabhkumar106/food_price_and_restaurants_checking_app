@@ -14,7 +14,7 @@ class WelcomeActivity : AppCompatActivity() {
         val scope = CoroutineScope(job + Dispatchers.Main)
         scope.launch {
             delay(2500)
-            val intent = Intent(this@WelcomeActivity, MainActivity::class.java)
+            val intent = Intent(this@WelcomeActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

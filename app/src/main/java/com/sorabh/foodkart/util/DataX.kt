@@ -1,12 +1,10 @@
 package com.sorabh.foodkart.util
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Restaurants_Data")
+@Entity(tableName = "RESTAURANTS_DATA" )
 data class DataX(
-    @ColumnInfo(name = "Price")
     val cost_for_one: String,
     @PrimaryKey
     val id: String,

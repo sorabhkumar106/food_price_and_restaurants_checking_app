@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<data>
+    <variable
+        name="data"
+        type="com.sorabh.foodkart.util.DataX" />
+<variable
+    name="listener"
+    type="com.sorabh.foodkart.adapter.FoodViewHolder.OnFavoriteButtonClicked" />
+    <import type="androidx.databinding.DataBindingUtil"/>
+</data>
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_food_image"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                imgSrcUrl="@{data.image_url}"
+                android:layout_marginStart="3dp"
+                android:src="@drawable/pizza" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_restaurants_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img_food_image"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="@{data.name}"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_food_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/img_food_image"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="5dp"
+                txt="@{data.cost_for_one}"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_food_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_rating"
+                android:layout_toEndOf="@+id/img_food_image"
+                android:layout_marginTop="90dp"
+                android:layout_marginStart="5dp"
+                android:text="@{data.rating}"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_food_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/material_on_surface_emphasis_high_type"
+                android:onClick="@{() -> listener.onFavoriteButtonClicked(data)}"
+                android:src="@drawable/ic_favorite_second" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -1,5 +1,6 @@
 package com.sorabh.foodkart.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,53 +18,84 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+
+        //adding data into toolbar
         with(mainBinding.toolBar) {
             supportActionBar
-            title = "All Restaurants"
+            actionBar
+            // working with option menu
             inflateMenu(R.menu.option_menu)
             setOnMenuItemClickListener(androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.question -> {
-                        Toast.makeText(this@MainActivity, "your qna", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@MainActivity, "Frequently asked Questions!", Toast.LENGTH_LONG).show()
                     }
                     R.id.log_out -> {
-                        Toast.makeText(this@MainActivity, "your log out", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@MainActivity, "you logout successfully!", Toast.LENGTH_LONG).show()
+                        logout()
                     }
                 }
                 return@OnMenuItemClickListener false
             })
         }
 
-
+        //working with bottom navigation
         with(mainBinding.bottomBar) {
             this.setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.bottom_menu_home -> {
                         it.isChecked = true
                         changeFragment(HomeFragment())
-                        Toast.makeText(this@MainActivity, "Home", Toast.LENGTH_LONG).show()
                     }
                     R.id.bottom_menu_user -> {
                         it.isChecked = true
-                        changeFragment(UserFragment())
-                        Toast.makeText(this@MainActivity, "User", Toast.LENGTH_LONG).show()
+                        val fragment = UserFragment()
+                        fragment.arguments = getUserBundle()
+                        changeFragment(fragment)
                     }
                     R.id.bottom_menu_favorite -> {
                         it.isChecked = true
                         changeFragment(FavoriteFragment())
-                        Toast.makeText(this@MainActivity, "favorite", Toast.LENGTH_LONG).show()
                     }
                 }
                 return@setOnItemSelectedListener false
             }
         }
+
+        //default fragment that will display
+        val userFragment = UserFragment()
+        userFragment.arguments = getUserBundle()
+        supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+            .replace(mainBinding.frameLayout.id, userFragment)
+            .addToBackStack("userFragment")
+            .commit()
     }
 
+    //transact between fragment
     private fun changeFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
             .replace(mainBinding.frameLayout.id, fragment)
             .addToBackStack(fragment.toString())
             .commit()
+    }
+
+    private fun getUserBundle(): Bundle {
+        val bundle = Bundle()
+        val preference = getSharedPreferences("foodKartLogin", MODE_PRIVATE)
+        bundle.putString("name", preference.getString("name", "name"))
+        bundle.putString("email", preference.getString("email", "email"))
+        bundle.putString("phone", preference.getString("phone", "phone"))
+        bundle.putString("password", preference.getString("password", "password"))
+        return bundle
+    }
+    private  fun logout(){
+        val sharedPreferences = getSharedPreferences("foodKartLogin", MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
 

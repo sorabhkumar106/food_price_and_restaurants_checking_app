@@ -27,8 +27,9 @@
 
 
     <!-- Full screen theme   -->
-    <style name="Theme.FoodKart.FullScreen" parent="Theme.FoodKart.NoActionBar">
-        <item name="windowNoTitle">false</item>
+    <style name="Theme.FoodKart.FullScreen" parent="Theme.FoodKart">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
     </style>
 
